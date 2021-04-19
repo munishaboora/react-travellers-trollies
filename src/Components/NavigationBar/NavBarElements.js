@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {NavLink as Link} from 'react-router-dom';
+import {FaShoppingBasket} from 'react-icons/fa';
 
 export const Nav = styled.nav`
 background: transparent; //Fix
@@ -25,3 +26,21 @@ cursor: pointer;
 }
 `;
 
+export const NavIcon =styled.div`
+display: block;
+posituion:absolute;
+top:0;
+right:0;
+cursor: pointer;
+color:#fff;
+
+p{
+transform: translate(-175%,100%);
+font-weight: bold;
+}
+`
+
+export const Bar = styled(FaShoppingBasket)`
+font-size: 2rem;
+transform: translate(-50%,-10%);
+`
