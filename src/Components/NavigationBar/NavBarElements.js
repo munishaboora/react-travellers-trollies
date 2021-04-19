@@ -16,7 +16,6 @@ font-size: 2rem;
 font-weight: bold;
 display: flex;
 align-items: center;
-text-decorations: none;
 cursor: pointer;
 
 @media screen and (max-width: 500px) {
@@ -26,6 +25,7 @@ cursor: pointer;
 }
 `;
 
+
 export const NavIcon =styled.div`
 display: block;
 position: absolute;
@@ -34,6 +34,8 @@ right:0;
 cursor: pointer;
 color:#fff;
 
+
+
 p{
 transform: translate(-175%,100%);
 font-weight: bold;
@@ -41,7 +43,7 @@ font-size: 20px;
 color: #4098d6;
 position: right;
 }
-`
+`;
 
 export const Bars = styled(BsPeopleCircle)`
 font-size: 2rem;
