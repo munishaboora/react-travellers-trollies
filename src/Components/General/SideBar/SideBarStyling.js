@@ -13,7 +13,7 @@ align-tems: center;
 top:0;
 display:grid;
 transition: 0.4s ease-in-out;
-right: ${({isOpen? '0' : '-1000px'})};
+right: ${({isOpen}) => (isOpen ? '0' : '-1000px')};
 
 @media screen and (max-width: 400px) {
     width: 100%;

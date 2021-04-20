@@ -1,10 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
-// import TravellersTrollies from './Components/TravellersTrollies/TravellersTrolliesMain';
-import NavigationBar from './Components/NavigationBar/NavBarMain';
-// // import Footer from './Components/Footer/Footer'
-import ContentContainer from './Components/ContentContainer/ContentContainerMain'
+import TravellersTrollies from './Components/TravellersTrollies/TravellersTrolliesMain';
+import NavigationBar from './Components/General/NavigationBar/NavBarMain';
+// import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
 function App() {
 
@@ -16,9 +15,8 @@ function App() {
     <Router>
       <GlobalStyle />
       <NavigationBar />
-      {/* <TravellersTrollies /> */}
+      <TravellersTrollies />
       <ContentContainer />
-      {/* <Footer /> */}
     </Router>
   );
 };
