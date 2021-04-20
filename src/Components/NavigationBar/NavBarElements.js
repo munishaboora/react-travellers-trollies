@@ -5,13 +5,13 @@ import {BsPeopleCircle} from 'react-icons/bs';
 export const Nav = styled.nav`
 background: transparent; //Fix
 font-size: 35px;
-color: #4098d6;
+color: #f9dd5d;
 display: flex;
 justify-content: center;
 `;
 
 export const NavLink = styled(Link)`
-colour: #4098d6;
+colour: #f9dd5d;
 font-size: 2rem;
 font-weight: bold;
 display: flex;
@@ -40,7 +40,7 @@ p{
 transform: translate(-175%,100%);
 font-weight: bold;
 font-size: 20px;
-color: #4098d6;
+color: #f9dd5d;
 position: right;
 }
 `;
@@ -49,5 +49,5 @@ export const Bars = styled(BsPeopleCircle)`
 font-size: 2rem;
 transform: translate(-420%,-85%); 
 //Changes positioning of person icon relative to text
-color: #4098d6;
+color: #f9dd5d;
 `;

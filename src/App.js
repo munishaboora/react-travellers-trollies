@@ -1,13 +1,14 @@
 import React from 'react';
-import NavigationBar from './Components/NavigationBar';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
+import TravellersTrollies from './Components/TravellersTrollies';
 
 function App() {
-  return (
+
+  return ( 
     <Router>
       <GlobalStyle />
-      <NavigationBar />
+      <TravellersTrollies />
     </Router>
   );
 };
