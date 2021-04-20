@@ -6,6 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     margin:0;
     padding:0;
     font-family:'Overpass',sans-serif;
-
+    ${"" /* background-color:"#473080"; */}
+    text-decoration: none;
+    color:#f9dd5d;
 }
 `;

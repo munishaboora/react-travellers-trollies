@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import {NavLink as Link} from 'react-router-dom';
 import {BsPeopleCircle} from 'react-icons/bs';
 
+export const CompanyLogo = styled.nav`
+
+`;
+
 export const Nav = styled.nav`
-background: transparent; //Fix
+background: transparent; /*Fix*/
 font-size: 35px;
 color: #f9dd5d;
 display: flex;
-justify-content: center;
+${'' /* justify-content: center; */}
 `;
 
 export const NavLink = styled(Link)`
@@ -20,13 +24,13 @@ cursor: pointer;
 
 @media screen and (max-width: 500px) {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 50px;
 }
 `;
 
 
-export const NavIcon =styled.div`
+export const NavIcon = styled.div`
 display: block;
 position: absolute;
 top:0;
@@ -36,7 +40,7 @@ color:#fff;
 
 
 
-p{
+p {
 transform: translate(-175%,100%);
 font-weight: bold;
 font-size: 20px;
@@ -48,6 +52,6 @@ position: right;
 export const Bars = styled(BsPeopleCircle)`
 font-size: 2rem;
 transform: translate(-420%,-85%); 
-//Changes positioning of person icon relative to text
+${'' /* //Changes positioning of person icon relative to text */}
 color: #f9dd5d;
 `;
