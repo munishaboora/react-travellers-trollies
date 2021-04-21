@@ -46,7 +46,7 @@ export default function StickyFooter() {
       </Container>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">Help Contact FAQs Cuisines Brands Site map</Typography>
+          <Typography variant="body1">Help     Contact     FAQs     Cuisines     Brands     Maps</Typography>
           <Copyright />
         </Container>
       </footer>
