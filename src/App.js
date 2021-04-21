@@ -8,25 +8,44 @@ import ContentContainer from './Components/General/ContentContainer/ContentConta
 
 function App() {
 
-  // const [userLoggedIn, setUserLoggedIn] = useState(false)
+
+  // STATES TO MANAGE THE SCREEN DISPLAYS
+
+  //for the user
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+  // if the user is a setter or a completer
   const [isSetter, setSetter] = useState(false)
 
-  //depending on fetch response.data, useState will change
 
-  const getPost = () => {
-    
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          return(data);
-        }
-        );
- 
+
+  // will need to create a function that responds to the user's input
+  // how to do that...?
+
+  /* if (isSetter == false) {
+    change the state of the modules below
+    will 
   }
-  var datalog = getPost()
-  .then(response => console.log(response));
-  // console.log(datalog);
+
+  */
+
+  // const getPost = async () => {
+    
+  //   const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+
+  //   const data = await res.json()
+  //       // .then((res) => res.json())
+  //       // .then(
+  //       //   (data) => {
+  //       //     return(data);
+  //       //   }
+  //       //   );
+ 
+  // }
+
+  const changeState = async () => {
+
+  }
+
   // states for content container set here
 
 
@@ -34,7 +53,7 @@ function App() {
   return ( 
     <Router>
       <GlobalStyle />
-      <form method="GET">
+      <form method="GET" onSubmit={changeState}>
         <input type="text" placeholder="enter 1 or 2">
 
         </input>
@@ -42,7 +61,7 @@ function App() {
       </form>
 
       {/* <TravellersTrollies /> */}
-      <ContentContainer />
+      <ContentContainer {/* will take in a prop that will be a boolean for whether it's a setter or a completer*/}/>
     </Router>
   );
 };
