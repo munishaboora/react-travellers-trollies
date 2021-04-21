@@ -20,6 +20,8 @@ function App() {
 		setLoginPopupOpen(false);
 	};
 
+	//const []
+
 	return (
 		<Router>
 			<GlobalStyle />

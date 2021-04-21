@@ -49,10 +49,29 @@ export default function InputAdornments() {
 		event.preventDefault();
 	};
 
+	const onSubmit = () => {
+		// prettier-ignore
+		fetch('http://localhost:5000/customer_login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([
+                {
+                    "username": values.username,
+                    "password": values.password,
+                },
+            ]),
+        })
+		.then((response) => response.json())
+		.then(data => console.log(data));
+	};
+
 	const showPasswordButton = (
-		<InputAdornment position="end">
+		<InputAdornment position='end'>
 			<IconButton
-				aria-label="toggle password visibility"
+				aria-label='toggle password visibility'
 				onClick={handleClickShowPassword}
 				onMouseDown={handleMouseDownPassword}
 			>
@@ -66,9 +85,9 @@ export default function InputAdornments() {
 			<div>
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Username */}
-					<InputLabel htmlFor="standard-adornment">Username</InputLabel>
+					<InputLabel htmlFor='standard-adornment'>Username</InputLabel>
 					<Input
-						id="standard-adornment"
+						id='standard-adornment'
 						value={values.username}
 						onChange={handleChange('username')}
 					/>
@@ -76,11 +95,11 @@ export default function InputAdornments() {
 
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Password */}
-					<InputLabel htmlFor="standard-adornment-password">
+					<InputLabel htmlFor='standard-adornment-password'>
 						Password
 					</InputLabel>
 					<Input
-						id="standard-adornment-password"
+						id='standard-adornment-password'
 						type={values.showPassword ? 'text' : 'password'}
 						value={values.password}
 						onChange={handleChange('password')}
@@ -91,10 +110,11 @@ export default function InputAdornments() {
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Sign In Button*/}
 					<Button
-						variant="contained"
+						variant='contained'
 						style={{ backgroundColor: 'green' }}
 						className={classes.button}
 						endIcon={<SendIcon />}
+						onClick={onSubmit}
 					>
 						Sign In
 					</Button>
