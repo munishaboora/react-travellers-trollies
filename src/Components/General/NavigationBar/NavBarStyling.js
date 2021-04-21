@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {NavLink as Link} from 'react-router-dom';
-import {BsPeopleCircle} from 'react-icons/bs';
+import {CgFormatJustify} from 'react-icons/cg';
 
 export const CompanyLogo = styled.nav`
 
@@ -49,7 +49,7 @@ position: right;
 }
 `;
 
-export const Bars = styled(BsPeopleCircle)`
+export const Bars = styled(CgFormatJustify)`
 font-size: 2rem;
 transform: translate(-420%,-85%); 
 ${'' /* //Changes positioning of person icon relative to text */}
