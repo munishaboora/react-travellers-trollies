@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
-import TravellersTrollies from './Components/TravellersTrollies/TravellersTrolliesMain';
-import NavigationBar from './Components/General/NavigationBar/NavBarMain';
+import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
+
 // import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
   return ( 
     <Router>
       <GlobalStyle />
-      <NavigationBar />
+
       <TravellersTrollies />
-      <ContentContainer />
+      {/* <ContentContainer /> */}
     </Router>
   );
 };

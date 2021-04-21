@@ -36,7 +36,7 @@ margin-bottom: 1 rem;
 box-shadow: 3px 5px #e9ba23;
 letter spacing: 2px;
 `
-export const TravellersTrolliesBtn = styled.button`
+export const TravellersTrolliesLoginBtn = styled.button`
 font-size: 1.4rem;
 padding: 1 rem 4 rem;
 border: none;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import NavigationBar from '../NavigationBar/NavBarMain';
-import SideBar from '../SideBar';
-import {TravellersTrolliesContainer, TravellersTrolliesContent, TravellersTrolliesItems, TravellersTrolliesH1 } from './TravellersTrolliesStyles';
+// import SideBar from '../../SideBarMain';
+import {TravellersTrolliesContainer, TravellersTrolliesContent, TravellersTrolliesItems, TravellersTrolliesH1, TravellersTrolliesLoginBtn } from './AppLayoutStyles';
 
 // , TravellersTrolliesLoginBtn 
 
@@ -9,7 +9,7 @@ const TravellersTrollies = () => {
     return (
         <TravellersTrolliesContainer>
             <NavigationBar/>
-            <SideBar/>
+            {/* <SideBar/> */}
             <TravellersTrolliesContent>
                 <TravellersTrolliesItems>
                     <TravellersTrolliesH1>Your friendly neighbourhood shopper!</TravellersTrolliesH1>
