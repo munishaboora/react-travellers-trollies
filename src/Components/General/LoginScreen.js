@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import LoginForms from './LoginForms';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -72,21 +73,23 @@ export default function LoginScreen() {
 					variant="fullWidth"
 					aria-label="full width tabs example"
 				>
-					<Tab label="Item One" {...a11yProps(0)} />
-					<Tab label="Item Two" {...a11yProps(1)} />
-					<Tab label="Item Three" {...a11yProps(2)} />
+					<Tab label="Login" {...a11yProps(0)} />
+					<Tab label="Register" {...a11yProps(1)} />
 				</Tabs>
 			</AppBar>
+
+			{/* <h1>x</h1> TODO: if have time add top-right x button*/}
+
 			<SwipeableViews
 				axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
 				index={value}
 				onChangeIndex={handleChangeIndex}
 			>
 				<TabPanel value={value} index={0} dir={theme.direction}>
-					Login
+					<LoginForms />
 				</TabPanel>
 				<TabPanel value={value} index={1} dir={theme.direction}>
-					Register
+					Register Here!
 				</TabPanel>
 			</SwipeableViews>
 		</div>
