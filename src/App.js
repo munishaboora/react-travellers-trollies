@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
 import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 import StickyAppBar from './Components/General/StickyAppBar';
-import LoginPopup from './Components/General/LoginPopup';
+import LoginPopupWindow from './Components/General/LoginPopupWindow';
 // import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
 function App() {
@@ -26,7 +26,10 @@ function App() {
 			<TravellersTrollies />
 			{/* <ContentContainer /> */}
 			{/* {popupShown && <LoginPopup />} */}
-			<LoginPopup open={loginPopupOpen} closeLoginPopup={closeLoginPopup} />
+			<LoginPopupWindow
+				open={loginPopupOpen}
+				closeLoginPopup={closeLoginPopup}
+			/>
 		</Router>
 	);
 }
