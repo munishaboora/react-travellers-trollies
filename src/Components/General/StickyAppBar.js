@@ -27,13 +27,13 @@ export default function ButtonAppBar({ openLoginPopup }) {
 		<div className={classes.root}>
 			<AppBar>
 				<Toolbar>
-				<Typography variant="h3" className={classes.title}>
-				<img src={companyLogo} alt="circle-lakers-themed-logo" width="100" height="100"/>
+				<Typography>
+				<img src={companyLogo} alt="circle-lakers-themed-logo" width="60" height="60"/>
 				</Typography>
-				<Typography variant="h3" className={classes.title}>
+				<Typography variant="h6" className={classes.title}>
 				Travellers' Trollies
-				</Typography>
-				<Button textStyle={{ fontSize: 40 }} color="inherit" onClick={openLoginPopup}>
+				</Typography >
+				<Button  color="inherit" onClick={openLoginPopup}>
 					Login/Register 
 				<MenuIcon/>
 				</Button>

@@ -17,7 +17,7 @@ const App = () => {
   }];
 
   return (
-    <Carousel images={images} style={{width:1000, height:600, margin:'auto', top:120}}/>
+    <Carousel images={images} style={{width:1000, height:600, margin:'auto', top:100}}/>
   );
 };
 
