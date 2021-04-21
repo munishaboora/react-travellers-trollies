@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
+import { FormControl, FormControlLabel } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Button from '@material-ui/core/Button';
+import { Button, Checkbox } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +34,11 @@ export default function InputAdornments() {
 	const [values, setValues] = React.useState({
 		username: '',
 		password: '',
+		confirmPassword: '',
 		showPassword: false,
+		email: '',
+		postcode: '',
+		address: '',
 	});
 
 	const handleChange = (prop) => (event) => {
@@ -64,6 +68,47 @@ export default function InputAdornments() {
 	return (
 		<div className={classes.root}>
 			<div>
+				<h2>Are you a volunteer or customer?</h2>
+
+				<FormControlLabel
+					label="Volunteer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							/* checked={state.checkedB}
+                        onChange={handleChange} */
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
+				<FormControlLabel
+					label="Customer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							/* checked={state.checkedB}
+                        onChange={handleChange} */
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
+				<br />
+				<h2>Set your user details</h2>
+
+				<FormControl className={clsx(classes.margin, classes.textField)}>
+					{/* Email */}
+					<InputLabel htmlFor="standard-adornment">Email Address</InputLabel>
+					<Input
+						id="standard-adornment"
+						value={values.email}
+						onChange={handleChange('email')}
+					/>
+				</FormControl>
+
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Username */}
 					<InputLabel htmlFor="standard-adornment">Username</InputLabel>
@@ -89,14 +134,51 @@ export default function InputAdornments() {
 				</FormControl>
 
 				<FormControl className={clsx(classes.margin, classes.textField)}>
-					{/* Sign In Button*/}
+					{/* Confirm Password */}
+					<InputLabel htmlFor="standard-adornment-password">
+						Confirm Password
+					</InputLabel>
+					<Input
+						id="standard-adornment-password"
+						type={values.showPassword ? 'text' : 'password'}
+						value={values.confirmPassword}
+						onChange={handleChange('confirmPassword')}
+						endAdornment={showPasswordButton}
+					/>
+				</FormControl>
+
+				<br />
+				<h2>Location</h2>
+
+				<FormControl className={clsx(classes.margin, classes.textField)}>
+					{/* Postcode */}
+					<InputLabel htmlFor="standard-adornment">Postcode</InputLabel>
+					<Input
+						id="standard-adornment"
+						value={values.postcode}
+						onChange={handleChange('postcode')}
+					/>
+				</FormControl>
+
+				<FormControl className={clsx(classes.margin, classes.textField)}>
+					{/* Home Address */}
+					<InputLabel htmlFor="standard-adornment">Home Address</InputLabel>
+					<Input
+						id="standard-adornment"
+						value={values.address}
+						onChange={handleChange('address')}
+					/>
+				</FormControl>
+
+				<FormControl className={clsx(classes.margin, classes.textField)}>
+					{/* Register Button */}
 					<Button
 						variant="contained"
-						style={{ backgroundColor: 'green' }}
+						style={{ backgroundColor: 'blue' }}
 						className={classes.button}
 						endIcon={<SendIcon />}
 					>
-						Sign In
+						Register
 					</Button>
 				</FormControl>
 			</div>

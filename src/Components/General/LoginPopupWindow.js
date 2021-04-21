@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import LoginScreen from './LoginScreen';
+import LoginRegisterTabs from './LoginRegisterTabs';
 
 const useStyles = makeStyles((theme) => ({
 	modal: {
@@ -37,12 +37,7 @@ const LoginPopupWindow = ({ open, closeLoginPopup }) => {
 			>
 				<Fade in={open}>
 					<div className={classes.paper}>
-						{/* <h2>Transition modal</h2>
-						<h2>Transition modal</h2>
-						<h2>Transition modal</h2>
-						<h2>Transition modal</h2>
-						<p>react-transition-group animates meeee.</p> */}
-						<LoginScreen />
+						<LoginRegisterTabs />
 					</div>
 				</Fade>
 			</Modal>

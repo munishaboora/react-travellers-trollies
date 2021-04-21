@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import LoginForms from './LoginForms';
+import RegisterForms from './RegisterForms';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -78,7 +79,7 @@ export default function LoginScreen() {
 				</Tabs>
 			</AppBar>
 
-			{/* <h1>x</h1> TODO: if have time add top-right x button*/}
+			{/* <h1>x</h1> TODO: if have time, add top-right x button*/}
 
 			<SwipeableViews
 				axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -89,7 +90,7 @@ export default function LoginScreen() {
 					<LoginForms />
 				</TabPanel>
 				<TabPanel value={value} index={1} dir={theme.direction}>
-					Register Here!
+					<RegisterForms />
 				</TabPanel>
 			</SwipeableViews>
 		</div>
