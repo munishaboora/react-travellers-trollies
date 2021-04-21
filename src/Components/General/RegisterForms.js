@@ -97,6 +97,7 @@ export default function InputAdornments() {
 				/>
 
 				<br />
+				<br />
 				<h2>Set your user details</h2>
 
 				<FormControl className={clsx(classes.margin, classes.textField)}>
@@ -147,6 +148,8 @@ export default function InputAdornments() {
 					/>
 				</FormControl>
 
+				<br />
+				<br />
 				<br />
 				<h2>Location</h2>
 

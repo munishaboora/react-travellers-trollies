@@ -8,12 +8,12 @@ import Link from '@material-ui/core/Link';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Travellers' Trollies
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+     {' Copyright © '}
+          {new Date().getFullYear()}
+
+      <Link color="inherit" href="https://github.com/munishaboora/react-travellers-trollies">
+      {' '} Travellers' Trollies Ltd
+      </Link>
     </Typography>
   );
 }
@@ -45,11 +45,16 @@ export default function StickyFooter() {
       <Container component="main" className={classes.main} maxWidth="sm">
       </Container>
       <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Typography variant="body1">Help     Contact     FAQs     Cuisines     Brands     Maps</Typography>
+        <Container maxWidth="xl">
+   
           <Copyright />
         </Container>
       </footer>
     </div>
   );
 }
+
+
+{/* <Link color="inherit" href="https://github.com/munishaboora/react-travellers-trollies">
+{' '} Travellers' Trollies Ltd
+</Link> */}

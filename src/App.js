@@ -6,6 +6,7 @@ import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 import StickyAppBar from './Components/General/StickyAppBar';
 import StickyFooter from './Components/General/Footer/Footer';
 import LoginPopupWindow from './Components/General/LoginPopupWindow';
+import BasicButtonGroup from './Components/General/Footer/FooterButtons';
 // import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 			<StickyAppBar openLoginPopup={openLoginPopup} />
 			<TravellersTrollies />
 			<StickyFooter />
+			<BasicButtonGroup/>
 			{/* <ContentContainer /> */}
 			{/* {popupShown && <LoginPopup />} */}
 			<LoginPopupWindow
