@@ -49,6 +49,17 @@ export default function InputAdornments() {
 		event.preventDefault();
 	};
 
+	const onSubmit = () => {
+		//console.log(values.username, values.password);
+
+		fetch('http://localhost:5000/customer_login', {
+			method: 'POST',
+			body: JSON.stringify([
+				{ username: 'breddihough0', password: '$2b$12$0MgHsloIHlHVM.D5RjFxneIKYl.907LWjIvJVk4OEJCO6XzwuNBrS' },
+			]),
+		});
+	};
+
 	const showPasswordButton = (
 		<InputAdornment position="end">
 			<IconButton
@@ -95,6 +106,7 @@ export default function InputAdornments() {
 						style={{ backgroundColor: 'green' }}
 						className={classes.button}
 						endIcon={<SendIcon />}
+						onClick={onSubmit}
 					>
 						Sign In
 					</Button>
