@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
 import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 import StickyAppBar from './Components/General/StickyAppBar';
+import StickyFooter from './Components/General/Footer/Footer';
 import LoginPopupWindow from './Components/General/LoginPopupWindow';
 // import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
@@ -24,6 +25,7 @@ function App() {
 			<GlobalStyle />
 			<StickyAppBar openLoginPopup={openLoginPopup} />
 			<TravellersTrollies />
+			<StickyFooter />
 			{/* <ContentContainer /> */}
 			{/* {popupShown && <LoginPopup />} */}
 			<LoginPopupWindow
