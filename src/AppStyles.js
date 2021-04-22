@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 
-export const OptionsSelectorStyles = styled.div`
+export const AppStyles = styled.div`
 display: flex;
 align-items: flex-start;
+height: 100vh;
+max-height: 100%;
 padding: 0 2rem;
 border: solid 1px black;
 color:#4098d6;
@@ -13,4 +15,4 @@ flex-direction: column;
 justify-content: center;
 `;
 
-export default OptionsSelectorStyles;
+export default AppStyles;

@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
+import { FormControl, FormControlLabel } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Button from '@material-ui/core/Button';
+import { Button, Checkbox } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,13 +29,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function InputAdornments() {
-	const classes = useStyles();
+export default function InputAdornments({
+	closeLoginPopup,
+	userState,
+	setUserState,
+}) {
 	const [values, setValues] = React.useState({
 		username: '',
 		password: '',
 		showPassword: false,
+		isCustomer: true,
 	});
+	const [retryLogin, setRetryLogin] = React.useState(false);
+	const [attemptingLogin, setAttemptingLogin] = React.useState(false);
 
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
@@ -49,9 +55,13 @@ export default function InputAdornments() {
 		event.preventDefault();
 	};
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
+		setAttemptingLogin(true);
+
+		const customerOrVolunteer = values.isCustomer ? 'customer' : 'volunteer';
+
 		// prettier-ignore
-		fetch('http://localhost:5000/customer_login', {
+		const data = await fetch(`http://localhost:5000/${customerOrVolunteer}_login`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -63,15 +73,35 @@ export default function InputAdornments() {
                     "password": values.password,
                 },
             ]),
-        })
-		.then((response) => response.json())
-		.then(data => console.log(data));
+        }).then((response) => response.json())
+
+		setAttemptingLogin(false);
+
+		console.log(data);
+
+		if (data && data.hasOwnProperty('Username')) {
+			//Succesful log-in
+			// prettier-ignore
+			setUserState({
+				loggedIn: true,
+				id: data[`${customerOrVolunteer === 'customer' ? 'Customer' : 'Volunteer'} ID`],
+				username: data['Username'],
+				email: data['Email'],
+				postcode: data['Postcode'],
+				houseNumber: data['House Number'],
+				isCustomer: customerOrVolunteer === 'customer' ? true : false,
+			});
+			closeLoginPopup();
+		} else {
+			//Unsuccesful log-in
+			setRetryLogin(true);
+		}
 	};
 
 	const showPasswordButton = (
-		<InputAdornment position='end'>
+		<InputAdornment position="end">
 			<IconButton
-				aria-label='toggle password visibility'
+				aria-label="toggle password visibility"
 				onClick={handleClickShowPassword}
 				onMouseDown={handleMouseDownPassword}
 			>
@@ -80,14 +110,18 @@ export default function InputAdornments() {
 		</InputAdornment>
 	);
 
+	const classes = useStyles();
+
 	return (
 		<div className={classes.root}>
 			<div>
+				<h2>Welcome</h2>
+
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Username */}
-					<InputLabel htmlFor='standard-adornment'>Username</InputLabel>
+					<InputLabel htmlFor="standard-adornment">Username</InputLabel>
 					<Input
-						id='standard-adornment'
+						id="standard-adornment"
 						value={values.username}
 						onChange={handleChange('username')}
 					/>
@@ -95,11 +129,11 @@ export default function InputAdornments() {
 
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Password */}
-					<InputLabel htmlFor='standard-adornment-password'>
+					<InputLabel htmlFor="standard-adornment-password">
 						Password
 					</InputLabel>
 					<Input
-						id='standard-adornment-password'
+						id="standard-adornment-password"
 						type={values.showPassword ? 'text' : 'password'}
 						value={values.password}
 						onChange={handleChange('password')}
@@ -107,18 +141,56 @@ export default function InputAdornments() {
 					/>
 				</FormControl>
 
+				<h2>Are you a customer or volunteer?</h2>
+
+				<FormControlLabel
+					label="Customer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							checked={values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: checked })
+							}
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
+				<FormControlLabel
+					label="Volunteer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							checked={!values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: !checked })
+							}
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Sign In Button*/}
 					<Button
-						variant='contained'
+						variant="contained"
 						style={{ backgroundColor: 'green' }}
 						className={classes.button}
 						endIcon={<SendIcon />}
 						onClick={onSubmit}
 					>
-						Sign In
+						{attemptingLogin ? 'Logging in...' : 'Sign In'}
 					</Button>
 				</FormControl>
+
+				{retryLogin && (
+					<p style={{ color: 'red' }}>
+						Some of your information isn't correct. Please try again.
+					</p>
+				)}
 			</div>
 		</div>
 	);

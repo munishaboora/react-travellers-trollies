@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import companyLogo from '../../images/circle-lakers-themed-logo.png';
 
-
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ButtonAppBar({ openLoginPopup }) {
+export default function ButtonAppBar({ openLoginPopup, userState }) {
 	const classes = useStyles();
 
 	return (
@@ -33,8 +32,10 @@ export default function ButtonAppBar({ openLoginPopup }) {
 				<Typography variant="h6" className={classes.title}>
 				Travellers' Trollies
 				</Typography >
-				<Button  color="inherit" onClick={openLoginPopup}>
-					Login/Register 
+				<Button color="inherit" onClick={userState.id === -1? openLoginPopup: undefined}>
+						{userState.id === -1
+							? 'Login/Register'
+							: `Hello, ${userState.username}! Logout`}
 				<MenuIcon/>
 				</Button>
 				</Toolbar>
@@ -42,4 +43,3 @@ export default function ButtonAppBar({ openLoginPopup }) {
 		</div>
 	);
 }
-

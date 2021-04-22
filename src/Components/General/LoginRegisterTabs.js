@@ -50,7 +50,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function LoginScreen() {
+export default function LoginScreen({
+	closeLoginPopup,
+	userState,
+	setUserState,
+}) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
@@ -85,12 +89,21 @@ export default function LoginScreen() {
 				axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
 				index={value}
 				onChangeIndex={handleChangeIndex}
+				style={{ height: 400 }}
 			>
 				<TabPanel value={value} index={0} dir={theme.direction}>
-					<LoginForms />
+					<LoginForms
+						closeLoginPopup={closeLoginPopup}
+						userState={userState}
+						setUserState={setUserState}
+					/>
 				</TabPanel>
 				<TabPanel value={value} index={1} dir={theme.direction}>
-					<RegisterForms />
+					<RegisterForms
+						closeLoginPopup={closeLoginPopup}
+						userState={userState}
+						setUserState={setUserState}
+					/>
 				</TabPanel>
 			</SwipeableViews>
 		</div>

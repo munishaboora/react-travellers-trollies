@@ -29,8 +29,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function InputAdornments() {
-	const classes = useStyles();
+export default function InputAdornments({
+	closeLoginPopup,
+	userState,
+	setUserState,
+}) {
 	const [values, setValues] = React.useState({
 		username: '',
 		password: '',
@@ -38,8 +41,11 @@ export default function InputAdornments() {
 		showPassword: false,
 		email: '',
 		postcode: '',
-		address: '',
+		houseNumber: '',
+		isCustomer: true,
 	});
+	const [retryRegister, setRetryRegister] = React.useState(false);
+	const [attemptingRegister, setAttemptingRegister] = React.useState(false);
 
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
@@ -51,6 +57,80 @@ export default function InputAdornments() {
 
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
+	};
+
+	const onSubmit = async () => {
+		setAttemptingRegister(true);
+
+		const customerOrVolunteer = values.isCustomer ? 'customer' : 'volunteer';
+		const password = values.password;
+
+		// prettier-ignore
+		const data = await fetch(`http://localhost:5000/add_${customerOrVolunteer}`, {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(
+				{
+					"username": values.username,
+					"password": password,
+					"email": values.email,
+					"postcode": values.postcode,
+					"house_number": values.houseNumber
+				}
+			),
+		}).then((response) => response.json())
+
+		//setAttemptingRegister(false);
+		console.log(data);
+
+		if (!data || data.hasOwnProperty('error')) {
+			setRetryRegister(true);
+			setAttemptingRegister(false);
+			return;
+		}
+
+		// prettier-ignore
+		const loginData = await fetch(
+			`http://localhost:5000/${customerOrVolunteer}_login`,
+			{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify([
+					{
+						"username": data.username,
+						"password": password,
+					},
+				]),
+			}
+		).then((response) => response.json());
+
+		setAttemptingRegister(false);
+
+		console.log(loginData);
+
+		if (loginData && loginData.hasOwnProperty('Username')) {
+			//Succesful log-in
+			setUserState({
+				loggedIn: true,
+				id: data.id,
+				username: data.username,
+				email: data.email,
+				postcode: data.postcode,
+				houseNumber: data.house_number,
+				isCustomer: customerOrVolunteer === 'customer' ? true : false,
+			});
+			closeLoginPopup();
+		} else {
+			//Unsuccesful log-in
+			setRetryRegister(true);
+			return;
+		}
 	};
 
 	const showPasswordButton = (
@@ -65,18 +145,22 @@ export default function InputAdornments() {
 		</InputAdornment>
 	);
 
+	const classes = useStyles();
+
 	return (
 		<div className={classes.root}>
 			<div>
-				<h2>Are you a volunteer or customer?</h2>
+				<h2>Are you a customer or volunteer?</h2>
 
 				<FormControlLabel
-					label="Volunteer"
+					label="Customer"
 					className={clsx(classes.margin)}
 					control={
 						<Checkbox
-							/* checked={state.checkedB}
-                        onChange={handleChange} */
+							checked={values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: checked })
+							}
 							name="checkedB"
 							color="primary"
 						/>
@@ -84,12 +168,14 @@ export default function InputAdornments() {
 				/>
 
 				<FormControlLabel
-					label="Customer"
+					label="Volunteer"
 					className={clsx(classes.margin)}
 					control={
 						<Checkbox
-							/* checked={state.checkedB}
-                        onChange={handleChange} */
+							checked={!values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: !checked })
+							}
 							name="checkedB"
 							color="primary"
 						/>
@@ -165,11 +251,11 @@ export default function InputAdornments() {
 
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Home Address */}
-					<InputLabel htmlFor="standard-adornment">Home Address</InputLabel>
+					<InputLabel htmlFor="standard-adornment">House Number</InputLabel>
 					<Input
 						id="standard-adornment"
-						value={values.address}
-						onChange={handleChange('address')}
+						value={values.houseNumber}
+						onChange={handleChange('houseNumber')}
 					/>
 				</FormControl>
 
@@ -180,10 +266,17 @@ export default function InputAdornments() {
 						style={{ backgroundColor: 'blue' }}
 						className={classes.button}
 						endIcon={<SendIcon />}
+						onClick={onSubmit}
 					>
-						Register
+						{attemptingRegister ? 'Registering...' : 'Register'}
 					</Button>
 				</FormControl>
+
+				{retryRegister && (
+					<p style={{ color: 'red' }}>
+						Some of your information isn't correct. Please try again.
+					</p>
+				)}
 			</div>
 		</div>
 	);
