@@ -24,14 +24,14 @@ const App = () => {
 			isAutoPlaying={true}
 			autoPlayInterval={3000}
 			hasLeftButton={false}
-      hasRightButton={false}
-      hasMediaButton={false}
-      hasSizeButton={false}
-      hasIndexBoard={false}
-      hasThumbnails={false}
+			hasRightButton={false}
+			hasMediaButton={false}
+			hasSizeButton={false}
+			hasIndexBoard={false}
+			hasThumbnails={false}
 			images={images}
 			style={{ height: 600, margin: 'auto', top: 64 }}
-    />
+		/>
 	);
 };
 
