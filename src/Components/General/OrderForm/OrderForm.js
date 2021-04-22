@@ -14,9 +14,9 @@ const OrderForm = ({ customerId }) => {
 				method: 'POST',
 				//prettier-ignore
 				headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+        		},
 				body: JSON.stringify({
 					customer_id: `${customerId}`,
 					product_names: [`${itemOne}`, `${itemTwo}`, `${itemThree}`],
