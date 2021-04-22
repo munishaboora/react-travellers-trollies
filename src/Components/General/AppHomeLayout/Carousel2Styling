@@ -1,0 +1,11 @@
+//  <Carousel2
+//       dots={true}
+//       isAutoPlaying={true}
+//       autoPlayInterval={3000}
+//       showSides={true}
+//       sidesOpacity={.5}
+//       sideSize={.1}
+//       slidesToScroll={4}
+//       slidesToShow={4}
+//       scrollOnDevice={true}
+//       incrementalSides={true} style={{ height: 200, align: 'auto', top: 64 }}>

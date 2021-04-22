@@ -21,7 +21,6 @@ const imagesTopCarousel = [
 
 const TravellersTrollies = () => {
     const [isOpen, SetIsOpen] = useState(false)
-
     const toggle = () => {
         SetIsOpen(!isOpen)
     }

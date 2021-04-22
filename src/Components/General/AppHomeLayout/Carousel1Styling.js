@@ -6,7 +6,7 @@ const App = ({images}) => {
 	return (
 		<Carousel
 			isAutoPlaying={true}
-			autoPlayInterval={3000}
+			autoPlayInterval={5000}
 			hasLeftButton={false}
       hasRightButton={false}
       hasMediaButton={false}
@@ -14,7 +14,7 @@ const App = ({images}) => {
       hasIndexBoard={false}
       hasThumbnails={false}
 			images={images}
-			style={{ height: 600, margin: 'auto', top: 64 }}
+			style={{ height: 600, width: 1000, margin: 'auto', top: 64 }}
     />
 	);
 };
