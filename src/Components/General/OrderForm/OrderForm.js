@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
-const OrderForm = () => {
+const OrderForm = ({ customerId }) => {
 	const [itemOne, setItemOne] = useState('');
 	const [itemTwo, setItemTwo] = useState('');
 	const [itemThree, setItemThree] = useState('');
 
 	const onSubmit = (e) => {
 		e.preventDefault(); // Needed to prevent default submission action
-
-		console.log(itemOne);
 
 		const receipt = fetch(
 			'http://localhost:5000/place_order_and_find_volunteer',
@@ -20,7 +18,7 @@ const OrderForm = () => {
             'Content-Type': 'application/json',
         },
 				body: JSON.stringify({
-					customer_id: '1',
+					customer_id: `${customerId}`,
 					product_names: [`${itemOne}`, `${itemTwo}`, `${itemThree}`],
 				}),
 			}

@@ -60,27 +60,30 @@ function App() {
 				userState={userState} /**/
 			/>
 			{/* <AppStyles> */}
-				{/* <button onClick={checkTheUser}>CLICK ME :)</button> */}
-				{/* <TravellersTrollies /> */}
-				{/* the state is passed through to the container as a prop */}
+			{/* <button onClick={checkTheUser}>CLICK ME :)</button> */}
+			{/* <TravellersTrollies /> */}
+			{/* the state is passed through to the container as a prop */}
 
-				{!userState.loggedIn ? (
-					<div>
-						<TravellersTrollies
-							openLoginPopup={openLoginPopup}
-							userState={userState}
-						/>
-						<StickyFooter />
-						<LoginPopupWindow
-							open={loginPopupOpen}
-							closeLoginPopup={closeLoginPopup}
-							userState={userState}
-							setUserState={setUserState}
-						/>
-					</div>
-				) : (
-					<ContentContainer setterPassedThrough={userState.isCustomer} />
-				)}
+			{!userState.loggedIn ? (
+				<div>
+					<TravellersTrollies
+						openLoginPopup={openLoginPopup}
+						userState={userState}
+					/>
+					<StickyFooter />
+					<LoginPopupWindow
+						open={loginPopupOpen}
+						closeLoginPopup={closeLoginPopup}
+						userState={userState}
+						setUserState={setUserState}
+					/>
+				</div>
+			) : (
+				<ContentContainer
+					setterPassedThrough={userState.isCustomer}
+					customerId={userState.id}
+				/>
+			)}
 			{/* </AppStyles> */}
 		</Router>
 	);

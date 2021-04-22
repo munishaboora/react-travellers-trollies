@@ -2,7 +2,11 @@ import React from 'react';
 import { ResponseContainerStyles } from './ResponseContainerStyles';
 import OrderForm from '../OrderForm/OrderForm';
 
-const ResponseContainer = ({ setterPassedThrough, stateOfResponse }) => {
+const ResponseContainer = ({
+	setterPassedThrough,
+	stateOfResponse,
+	customerId,
+}) => {
 	return (
 		<div>
 			<ResponseContainerStyles>
@@ -17,7 +21,7 @@ const ResponseContainer = ({ setterPassedThrough, stateOfResponse }) => {
 						? `state of Response is ${stateOfResponse}`
 						: 'This is for the volunteers. Not much will appear here'}
 				</h1>
-				<OrderForm />
+				<OrderForm customerId={customerId} />
 			</ResponseContainerStyles>
 		</div>
 	);
