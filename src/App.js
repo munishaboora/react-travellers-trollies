@@ -31,11 +31,12 @@ function App() {
 			<GlobalStyle/>
 			<StickyAppBar openLoginPopup={openLoginPopup} />
 			<TravellersTrollies />
-			<br/> <br/> <br/> <br/> <br/> <br/>
+			<br/> <br/> <br/> <br/> <br/> <br/>	<br/> <br/> <br/> <br/> 
 			<h1 font-size="5em" style={{textAlign:"center"}}>Guess what? We've just made your life so much easier with our new app!</h1>
-			<HomePageMiddle/>
 			<br/> <br/> <br/>
-			<h1 font-size="5em" style={{textAlign:"center"}}>Meet our amazing partners:</h1>
+			<HomePageMiddle/>
+			<br/> <br/> <br/> <br/> <br/> <br/>	<br/> 
+			<h1 style={{textAlign:"center"}}>Meet our amazing partners:</h1>
 			<CarouselBottom/>
 			<StickyFooter />
 			<BasicButtonGroup/>
