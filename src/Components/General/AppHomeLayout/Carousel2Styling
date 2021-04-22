@@ -1,11 +1,24 @@
-//  <Carousel2
-//       dots={true}
-//       isAutoPlaying={true}
-//       autoPlayInterval={3000}
-//       showSides={true}
-//       sidesOpacity={.5}
-//       sideSize={.1}
-//       slidesToScroll={4}
-//       slidesToShow={4}
-//       scrollOnDevice={true}
-//       incrementalSides={true} style={{ height: 200, align: 'auto', top: 64 }}>
+import Carousel from 'react-gallery-carousel';
+import 'react-gallery-carousel/dist/index.css';
+
+const App = ({images}) => {
+
+	return (
+		<Carousel
+            show={4}
+			isAutoPlaying={true}
+			autoPlayInterval={3000}
+			hasLeftButton={false}
+      hasRightButton={false}
+      hasMediaButton={false}
+      hasSizeButton={false}
+      hasIndexBoard={false}
+      hasThumbnails={false}
+      isMaximized={false}
+			images={images}
+			style={{height: 600, width: 1000, margin: 'auto' }}
+    />
+	);
+};
+
+export default App;

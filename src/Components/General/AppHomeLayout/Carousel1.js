@@ -16,7 +16,7 @@ const imagesTopCarousel = [
         src:
             'https://www.popsci.com/app/uploads/2020/11/18/XDRYXGDBTNBULIWR72SJZKOEB4.jpg?width=1440',
     },
-];
+]; 
 
 
 const TravellersTrollies = () => {

@@ -9,6 +9,7 @@ import StickyFooter from './Components/General/Footer/Footer';
 import LoginPopupWindow from './Components/General/LoginPopupWindow';
 import BasicButtonGroup from './Components/General/Footer/FooterButtons';
 import HomePageMiddle from './Components/General/AppHomeLayout/HomePageMiddle';
+
 // import ContentContainer from './Components/ContentContainer/ContentContainerMain'
 
 function App() {
@@ -27,12 +28,15 @@ function App() {
 
 	return (
 		<Router>
-			<GlobalStyle />
+			<GlobalStyle/>
 			<StickyAppBar openLoginPopup={openLoginPopup} />
 			<TravellersTrollies />
-			<br/> <br/> <br/> <br/> <br/> <br/> <br/>
-			{/* <CarouselBottom/> */}
+			<br/> <br/> <br/> <br/> <br/> <br/>
+			<h1 font-size="5em" style={{textAlign:"center"}}>Guess what? We've just made your life so much easier with our new app!</h1>
 			<HomePageMiddle/>
+			<br/> <br/> <br/>
+			<h1 font-size="5em" style={{textAlign:"center"}}>Meet our amazing partners:</h1>
+			<CarouselBottom/>
 			<StickyFooter />
 			<BasicButtonGroup/>
 			{/* <ContentContainer /> */}
