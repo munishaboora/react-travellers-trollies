@@ -32,7 +32,7 @@ const ContentContainer = ({ setterPassedThrough, customerId }) => {
 				{/* the state will be passed down to this component*/}
 				<ResponseContainer
 					setterPassedThrough={setterPassedThrough}
-					stateofResponse={buttonChoice}
+					stateOfResponse={buttonChoice}
 					customerId={customerId}
 				/>
 			</ContentContainerStyles>
