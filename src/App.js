@@ -9,6 +9,7 @@ import BasicButtonGroup from './Components/General/Footer/FooterButtons';
 import HomePageMiddle from './Components/General/AppHomeLayout/HomePageMiddle';
 import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 import ContentContainer from './Components/General/ContentContainer/ContentContainerMain';
+import Carousel from './Components/General/AppLayout/Carousel';
 
 function App() {
 	// states for content container set here
@@ -23,27 +24,34 @@ function App() {
 	});
 	const [loginPopupOpen, setLoginPopupOpen] = useState(false);
 
-	// can cycle through options to display something
-	// const hasUserLoggedIn = () => {
-	// if a get requested has been completed and status 200 && if returned data is true
-	// setUserLoggedIn(true)
-	// checkTheUser()
-	// }
+	const images = [
+		{
+			src: `https://creativereview.imgix.net/content/uploads/2016/05/North_Coop_000_Logo-CRsite.jpg?auto=compress,format&q=60&w=1200&h=772`,
+		},
+		{
+			src: `https://hammersmithbid.co.uk/wp-content/uploads/2020/06/sainsburys_logo_760_v1.png`,
+		},
+		{
+			src: `https://cdn.mos.cms.futurecdn.net/KjL62wBFr8zZwaaPbdMZrL.png`,
+		},
+		{
+			src: `https://preview.redd.it/k2w1cisqotx51.png?width=1757&format=png&auto=webp&s=19b2a77dd2d0254c9cfb89e8b207d5a4bc30988c`,
+		},
+		{
+			src: `https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2017/03/13124707/ALDI-New-Logo.jpg`,
+		},
+		{
+			src: `https://cached.imagescaler.hbpl.co.uk/resize/scaleHeight/815/cached.offlinehbpl.hbpl.co.uk/news/OMC/AsdaResized-20150223115224441.jpg`,
+		},
+		{
+			src: `https://www.greyfriarsringwood.org.uk/wp-content/uploads/2019/05/WAITROSE400X600.png`,
+		},
 
-	/* const checkTheUser = () => {
-    setSetter(!isSetter)
-  } */
-	// function to check input
+		{
+			src: `https://1000logos.net/wp-content/uploads/2018/09/Morrisons-Logo.jpg`,
+		},
+	];
 
-	// states for content container set here
-
-	/*   return ( 
-    <Router>
-      {/* <GlobalStyle /> */
-
-	/* </Router> */
-	/*   );
-}; */
 	const openLoginPopup = () => {
 		setLoginPopupOpen(true);
 	};
@@ -57,7 +65,6 @@ function App() {
 			<GlobalStyle />
 			<StickyAppBar openLoginPopup={openLoginPopup} userState={userState} />
 
-			
 			{/* {popupShown && <LoginPopup />} */}
 			{/* <LoginPopupWindow
 				open={loginPopupOpen}
@@ -80,6 +87,7 @@ function App() {
 					<HomePageMiddle />
 					<br /> <br /> <br /> <br /> <br /> <br /> <br />
 					<h1 style={{ textAlign: 'center' }}>Meet our amazing partners:</h1>
+					<Carousel images={images} />
 					<LoginPopupWindow
 						open={loginPopupOpen}
 						closeLoginPopup={closeLoginPopup}

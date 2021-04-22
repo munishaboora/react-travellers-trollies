@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-//import {TravellersTrolliesContainer, TravellersTrolliesContent, TravellersTrolliesItems, TravellersTrolliesH1, TravellersTrolliesLoginBtn } from './AppLayoutStyles';
 import Carousel from './Carousel';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 
 const TravellersTrollies = ({ userState, openLoginPopup }) => {
+	const images = [
+		{
+			src: `https://static.vecteezy.com/system/resources/thumbnails/002/278/743/original/flash-sale-neon-sign-for-promotion-with-floor-reflection-4k-free-video.jpg`,
+		},
+		{
+			src: `https://q3p9g6n2.rocketcdn.me/wp-content/ml-loads/2016/08/grocery-groceries-commerce-online-ss-1920.jpg`,
+		},
+		{
+			src: `https://assets.publishing.service.gov.uk/government/uploads/system/uploads/image_data/file/80628/s960_Groceries.jpg`,
+		},
+		{
+			src:
+				'https://www.popsci.com/app/uploads/2020/11/18/XDRYXGDBTNBULIWR72SJZKOEB4.jpg?width=1440',
+		},
+	];
+
 	return (
 		<div>
-			<Carousel />
+			<Carousel images={images} />
 			<div
 				style={{
 					backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -41,16 +56,5 @@ const TravellersTrollies = ({ userState, openLoginPopup }) => {
 		</div>
 	);
 };
+
 export default TravellersTrollies;
-
-{
-	/* <TravellersTrolliesContainer>
-
-<TravellersTrolliesContent>
-    <TravellersTrolliesItems>
-        <TravellersTrolliesH1>Your friendly neighbourhood shopper!</TravellersTrolliesH1>
-        <TravellersTrolliesLoginBtn>Login</TravellersTrolliesLoginBtn>
-    </TravellersTrolliesItems>
-</TravellersTrolliesContent>
-</TravellersTrolliesContainer> */
-}
