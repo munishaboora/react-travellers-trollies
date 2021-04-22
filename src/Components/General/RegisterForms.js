@@ -114,7 +114,7 @@ export default function InputAdornments({
 
 		console.log(loginData);
 
-		if (loginData && loginData.hasOwnProperty('Logged In')) {
+		if (loginData && loginData.hasOwnProperty('Username')) {
 			//Succesful log-in
 			setUserState({
 				loggedIn: true,
