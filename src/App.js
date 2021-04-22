@@ -10,6 +10,15 @@ import LoginPopupWindow from './Components/General/LoginPopupWindow';
 
 function App() {
 	// states for content container set here
+	const [userState, setUserState] = useState({
+		loggedIn: false,
+		id: -1,
+		username: '',
+		email: '',
+		postcode: '',
+		houseNumber: '',
+		isCustomer: true, //false if volunteer
+	});
 	const [loginPopupOpen, setLoginPopupOpen] = useState(false);
 
 	const openLoginPopup = () => {
@@ -20,19 +29,17 @@ function App() {
 		setLoginPopupOpen(false);
 	};
 
-	//const []
-
 	return (
 		<Router>
 			<GlobalStyle />
-			<StickyAppBar openLoginPopup={openLoginPopup} />
-			<TravellersTrollies />
+			<StickyAppBar openLoginPopup={openLoginPopup} userState={userState} />
+			<TravellersTrollies userState={userState} />
 			<StickyFooter />
-			{/* <ContentContainer /> */}
-			{/* {popupShown && <LoginPopup />} */}
 			<LoginPopupWindow
 				open={loginPopupOpen}
 				closeLoginPopup={closeLoginPopup}
+				userState={userState}
+				setUserState={setUserState}
 			/>
 		</Router>
 	);

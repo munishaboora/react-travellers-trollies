@@ -18,7 +18,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const LoginPopupWindow = ({ open, closeLoginPopup }) => {
+const LoginPopupWindow = ({
+	open,
+	closeLoginPopup,
+	userState,
+	setUserState,
+}) => {
 	const classes = useStyles();
 
 	return (
@@ -37,7 +42,11 @@ const LoginPopupWindow = ({ open, closeLoginPopup }) => {
 			>
 				<Fade in={open}>
 					<div className={classes.paper}>
-						<LoginRegisterTabs />
+						<LoginRegisterTabs
+							closeLoginPopup={closeLoginPopup}
+							userState={userState}
+							setUserState={setUserState}
+						/>
 					</div>
 				</Fade>
 			</Modal>
