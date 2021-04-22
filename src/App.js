@@ -7,7 +7,7 @@ import StickyFooter from './Components/General/Footer/Footer';
 import LoginPopupWindow from './Components/General/LoginPopupWindow';
 import BasicButtonGroup from './Components/General/Footer/FooterButtons';
 import HomePageMiddle from './Components/General/AppHomeLayout/HomePageMiddle';
-
+import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 import ContentContainer from './Components/General/ContentContainer/ContentContainerMain';
 
 function App() {
@@ -56,16 +56,8 @@ function App() {
 		<Router>
 			<GlobalStyle />
 			<StickyAppBar openLoginPopup={openLoginPopup} userState={userState} />
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-			<h1 font-size="5em" style={{ textAlign: 'center' }}>
-				Guess what? We've just made your life so much easier with our new app!
-			</h1>
-			<br /> <br /> <br />
-			<HomePageMiddle />
-			<br /> <br /> <br /> <br /> <br /> <br /> <br />
-			<h1 style={{ textAlign: 'center' }}>Meet our amazing partners:</h1>
-			<StickyFooter />
-			<BasicButtonGroup />
+
+			
 			{/* {popupShown && <LoginPopup />} */}
 			{/* <LoginPopupWindow
 				open={loginPopupOpen}
@@ -75,6 +67,19 @@ function App() {
 			{/* the state is passed through to the container as a prop */}
 			{!userState.loggedIn ? (
 				<div>
+					<TravellersTrollies
+						openLoginPopup={openLoginPopup}
+						userState={userState}
+					/>
+					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<h1 font-size="5em" style={{ textAlign: 'center' }}>
+						Guess what? We've just made your life so much easier with our new
+						app!
+					</h1>
+					<br /> <br /> <br />
+					<HomePageMiddle />
+					<br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<h1 style={{ textAlign: 'center' }}>Meet our amazing partners:</h1>
 					<LoginPopupWindow
 						open={loginPopupOpen}
 						closeLoginPopup={closeLoginPopup}
@@ -89,6 +94,9 @@ function App() {
 				/>
 			)}
 			{/* </AppStyles> */}
+
+			<StickyFooter />
+			<BasicButtonGroup />
 		</Router>
 	);
 }
