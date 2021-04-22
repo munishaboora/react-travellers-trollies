@@ -4,7 +4,7 @@ import Carousel from './Carousel';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 
-const TravellersTrollies = () => {
+const TravellersTrollies = ({ userState, openLoginPopup }) => {
 	return (
 		<div>
 			<Carousel />
@@ -33,7 +33,7 @@ const TravellersTrollies = () => {
 					variant="contained"
 					style={{ backgroundColor: 'green', width: 200, height: 70 }}
 					endIcon={<SendIcon />}
-					/* onClick={ } */
+					onClick={userState.id === -1 ? openLoginPopup : undefined}
 				>
 					Sign In
 				</Button>

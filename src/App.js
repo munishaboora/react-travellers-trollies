@@ -32,8 +32,14 @@ function App() {
 	return (
 		<Router>
 			<GlobalStyle />
-			<StickyAppBar openLoginPopup={openLoginPopup} userState={userState} />
-			<TravellersTrollies userState={userState} />
+			<StickyAppBar
+				openLoginPopup={openLoginPopup}
+				userState={userState} /**/
+			/>
+			<TravellersTrollies
+				openLoginPopup={openLoginPopup}
+				userState={userState}
+			/>
 			<StickyFooter />
 			<LoginPopupWindow
 				open={loginPopupOpen}
