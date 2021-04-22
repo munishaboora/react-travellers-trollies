@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function InputAdornments(
+export default function InputAdornments({
 	closeLoginPopup,
 	userState,
-	setUserState
-) {
+	setUserState,
+}) {
 	const [values, setValues] = React.useState({
 		username: '',
 		password: '',
@@ -62,37 +62,75 @@ export default function InputAdornments(
 	const onSubmit = async () => {
 		setAttemptingRegister(true);
 
-		// prettier-ignore
+		const customerOrVolunteer = values.isCustomer ? 'customer' : 'volunteer';
+		const password = values.password;
 
-		const data = await fetch(`http://localhost:5000/add_${values.isCustomer? 'customer' : 'volunteer'}`, {
+		// prettier-ignore
+		const data = await fetch(`http://localhost:5000/add_${customerOrVolunteer}`, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify([
+			body: JSON.stringify(
 				{
 					"username": values.username,
-					"password": values.password,
+					"password": password,
 					"email": values.email,
 					"postcode": values.postcode,
 					"house_number": values.houseNumber
-				},
-			]),
+				}
+			),
 		}).then((response) => response.json())
 
 		//setAttemptingRegister(false);
-		console.log(data)
+		console.log(data);
 
-		// console.log(data);
-		// if (data && data.hasOwnProperty('Logged In')) {
-		// 	//Succesful log-in
-		// 	//setUserState();
-		// 	closeLoginPopup();
-		// } else {
-		// 	//Unsuccesful log-in
-		// 	setRetryPassword(true);
-		// }
+		if (!data || data.hasOwnProperty('error')) {
+			setRetryRegister(true);
+			setAttemptingRegister(false);
+			return;
+		}
+
+		// prettier-ignore
+		const loginData = await fetch(
+			`http://localhost:5000/${customerOrVolunteer}_login`,
+			{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify([
+					{
+						"username": data.username,
+						"password": password,
+					},
+				]),
+			}
+		).then((response) => response.json());
+
+		setAttemptingRegister(false);
+
+		console.log(loginData);
+
+		if (loginData && loginData.hasOwnProperty('Logged In')) {
+			//Succesful log-in
+			setUserState({
+				loggedIn: true,
+				id: data.id,
+				username: data.username,
+				email: data.email,
+				postcode: data.postcode,
+				houseNumber: data.house_number,
+				isCustomer: customerOrVolunteer === 'customer' ? true : false,
+			});
+			closeLoginPopup();
+		} else {
+			//Unsuccesful log-in
+			setRetryRegister(true);
+			return;
+		}
 	};
 
 	const showPasswordButton = (
@@ -227,7 +265,7 @@ export default function InputAdornments(
 						endIcon={<SendIcon />}
 						onClick={onSubmit}
 					>
-						Register
+						{attemptingRegister ? 'Registering...' : 'Register'}
 					</Button>
 				</FormControl>
 

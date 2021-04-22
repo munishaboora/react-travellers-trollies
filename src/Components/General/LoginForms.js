@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
+import { FormControl, FormControlLabel } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Button from '@material-ui/core/Button';
+import { Button, Checkbox } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,8 +38,9 @@ export default function InputAdornments({
 		username: '',
 		password: '',
 		showPassword: false,
+		isCustomer: true,
 	});
-	const [retryPassword, setRetryPassword] = React.useState(false);
+	const [retryLogin, setRetryLogin] = React.useState(false);
 	const [attemptingLogin, setAttemptingLogin] = React.useState(false);
 
 	const handleChange = (prop) => (event) => {
@@ -57,8 +58,10 @@ export default function InputAdornments({
 	const onSubmit = async () => {
 		setAttemptingLogin(true);
 
+		const customerOrVolunteer = values.isCustomer ? 'customer' : 'volunteer';
+
 		// prettier-ignore
-		const data = await fetch('http://localhost:5000/customer_login', {
+		const data = await fetch(`http://localhost:5000/${customerOrVolunteer}_login`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -70,21 +73,28 @@ export default function InputAdornments({
                     "password": values.password,
                 },
             ]),
-        })
-			.then((response) => response.json())
-
-		//const userId = await
+        }).then((response) => response.json())
 
 		setAttemptingLogin(false);
 
 		console.log(data);
-		if (data && data.hasOwnProperty('Logged In')) {
+
+		if (data && data.hasOwnProperty('Username')) {
 			//Succesful log-in
-			//setUserState();
+			// prettier-ignore
+			setUserState({
+				loggedIn: true,
+				id: data[`${customerOrVolunteer === 'customer' ? 'Customer' : 'Volunteer'} ID`],
+				username: data['Username'],
+				email: data['Email'],
+				postcode: data['Postcode'],
+				houseNumber: data['House Number'],
+				isCustomer: customerOrVolunteer === 'customer' ? true : false,
+			});
 			closeLoginPopup();
 		} else {
 			//Unsuccesful log-in
-			setRetryPassword(true);
+			setRetryLogin(true);
 		}
 	};
 
@@ -131,6 +141,38 @@ export default function InputAdornments({
 					/>
 				</FormControl>
 
+				<h2>Are you a customer or volunteer?</h2>
+
+				<FormControlLabel
+					label="Customer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							checked={values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: checked })
+							}
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
+				<FormControlLabel
+					label="Volunteer"
+					className={clsx(classes.margin)}
+					control={
+						<Checkbox
+							checked={!values.isCustomer}
+							onChange={(_, checked) =>
+								setValues({ ...values, isCustomer: !checked })
+							}
+							name="checkedB"
+							color="primary"
+						/>
+					}
+				/>
+
 				<FormControl className={clsx(classes.margin, classes.textField)}>
 					{/* Sign In Button*/}
 					<Button
@@ -144,7 +186,7 @@ export default function InputAdornments({
 					</Button>
 				</FormControl>
 
-				{retryPassword && (
+				{retryLogin && (
 					<p style={{ color: 'red' }}>
 						Some of your information isn't correct. Please try again.
 					</p>
