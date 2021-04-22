@@ -1,7 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import AppStyles from './AppStyles.js';
+
 // import TravellersTrollies from './Components/General/AppLayout/AppLayoutMain';
 
 import ContentContainer from './Components/General/ContentContainer/ContentContainerMain'
@@ -15,12 +17,14 @@ function App() {
   // if the user is a setter or a completer
   const [isSetter, setSetter] = useState(false);
 
+  // can cycle through options to display something
+  // const hasUserLoggedIn = () => {
+  // if a get requested has been completed and status 200 && if returned data is true
+  // setUserLoggedIn(true)
+  // checkTheUser()
+  // }
 
-  /* if (isSetter == false) {
- 
-  }
-  */
-  const changeScreenFromLogInToSetterMainPage = () => {
+  const checkTheUser = () => {
     setSetter(!isSetter)
   }
   // function to check input
@@ -29,11 +33,13 @@ function App() {
 
   return ( 
     <Router>
-      <GlobalStyle />
-      <button onClick={changeScreenFromLogInToSetterMainPage}>CLICK ME :)</button>
-      {/* <TravellersTrollies /> */}
-      {/* the state is passed through to the container as a prop */}
-      <ContentContainer stateOfContainer={isSetter}/>
+      {/* <GlobalStyle /> */}
+      <AppStyles>
+        <button onClick={checkTheUser}>CLICK ME :)</button>
+        {/* <TravellersTrollies /> */}
+        {/* the state is passed through to the container as a prop */}
+        <ContentContainer setterPassedThrough={isSetter}/>
+      </AppStyles>
     </Router>
   );
 };
