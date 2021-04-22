@@ -8,7 +8,7 @@ const ResponseContainer = ({ setterPassedThrough, stateOfResponse }) => {
         <h1>This is the response container. Depending on the button selected, different things will happen</h1>
         {/* depending on the state passed through from the prop, different screens are to appear */}
         <h1> {setterPassedThrough ? ( 
-          `state of Response is ${stateOfResponse}`
+           ( stateOfResponse === "createOrder" ? `State of response is ${stateOfResponse}` : (stateOfResponse === "previousOrder" ? `State of response is ${stateOfResponse}` : ( stateOfResponse === "currentOrder" ? `State of response is ${stateOfResponse}` : "nothing to display")))
         ) : ( "This is for the volunteers. Not much will appear here" )
             }
         </h1>
