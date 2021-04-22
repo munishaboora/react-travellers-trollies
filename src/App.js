@@ -79,7 +79,7 @@ function App() {
 			/> */}
 
 			{/* <button onClick={checkTheUser}>CLICK ME :)</button> */}
-			{/* <TravellersTrollies /> */}
+		
 			{/* the state is passed through to the container as a prop */}
 
 			{!userState.loggedIn ? (
