@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalStyle } from './globalStyles';
 import StickyAppBar from './Components/General/StickyAppBar';
@@ -70,8 +70,6 @@ function App() {
 				open={loginPopupOpen}
 				closeLoginPopup={closeLoginPopup}
 			/> */}
-			{/* <button onClick={checkTheUser}>CLICK ME :)</button> */}
-			{/* the state is passed through to the container as a prop */}
 			{!userState.loggedIn ? (
 				<div>
 					<TravellersTrollies
@@ -87,7 +85,10 @@ function App() {
 					<HomePageMiddle />
 					<br /> <br /> <br /> <br /> <br /> <br /> <br />
 					<h1 style={{ textAlign: 'center' }}>Meet our amazing partners:</h1>
-					<Carousel images={images} />
+					<Carousel
+						images={images}
+						style={{ height: 400, width: 700, margin: 'auto' }}
+					/>
 					<LoginPopupWindow
 						open={loginPopupOpen}
 						closeLoginPopup={closeLoginPopup}
@@ -101,7 +102,6 @@ function App() {
 					customerId={userState.id}
 				/>
 			)}
-			{/* </AppStyles> */}
 
 			<StickyFooter />
 			<BasicButtonGroup />

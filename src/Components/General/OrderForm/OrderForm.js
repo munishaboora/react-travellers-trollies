@@ -5,10 +5,10 @@ const OrderForm = ({ customerId }) => {
 	const [itemTwo, setItemTwo] = useState('');
 	const [itemThree, setItemThree] = useState('');
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault(); // Needed to prevent default submission action
 
-		const receipt = fetch(
+		const receipt = await fetch(
 			'http://localhost:5000/place_order_and_find_volunteer',
 			{
 				method: 'POST',
@@ -24,35 +24,40 @@ const OrderForm = ({ customerId }) => {
 			}
 		)
 			.then((response) => response.json())
-			.then((data) => console.log(data));
+
+		if (receipt.error) {
+			alert("Order could not be submitted. Our apologies.")
+		} else {
+			alert("Order placed successfully and matched with volunteer!")
+		}
 	};
 
 	return (
-		<div>
+		<div style={{ margin: 'auto' }}>
 			<h1>Basket</h1>
 			<form onSubmit={onSubmit}>
 				<label>Item 1</label>
 				<input
-					type='text'
+					type="text"
 					value={itemOne}
 					onChange={(e) => setItemOne(e.target.value)}
 				></input>
 
 				<label>Item 2</label>
 				<input
-					type='text'
+					type="text"
 					value={itemTwo}
 					onChange={(e) => setItemTwo(e.target.value)}
 				></input>
 
 				<label>Item 3</label>
 				<input
-					type='text'
+					type="text"
 					value={itemThree}
 					onChange={(e) => setItemThree(e.target.value)}
 				></input>
 
-				<button type='submit'>Place Order</button>
+				<button type="submit">Place Order</button>
 			</form>
 		</div>
 	);

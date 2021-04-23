@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -6,9 +6,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin:0;
     padding:0;
-    font-family:'Overpass',sans-serif;
-    ${"" /* background-color:"#473080"; */}
+    font-family: 'Helvetica', 'Arial', sans-serif;
     text-decoration: none;
-    color:#f9dd5d;
+    color:#ffffff;
 }
 `;
+
+//just for presentation, we used chrome: dark reader extension (with white text)

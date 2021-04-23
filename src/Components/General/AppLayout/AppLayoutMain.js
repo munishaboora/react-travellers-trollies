@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Carousel from './Carousel';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
@@ -22,7 +22,7 @@ const TravellersTrollies = ({ userState, openLoginPopup }) => {
 
 	return (
 		<div>
-			<Carousel images={images} />
+			<Carousel images={images} style={{ height: 600, margin: 'auto', top: 64 }} />
 			<div
 				style={{
 					backgroundColor: 'rgba(255, 255, 255, 0.5)',

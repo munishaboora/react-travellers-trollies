@@ -1,8 +1,7 @@
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 
-const App = ({ images }) => {
-	
+const App = ({ images, style }) => {
 
 	return (
 		<Carousel
@@ -15,7 +14,7 @@ const App = ({ images }) => {
 			hasIndexBoard={false}
 			hasThumbnails={false}
 			images={images}
-			style={{ height: 600, margin: 'auto', top: 64 }}
+			style={style}
 		/>
 	);
 };
