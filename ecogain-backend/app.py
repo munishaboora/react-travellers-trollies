@@ -60,4 +60,17 @@ def get_one_user(user_id):
     user_data['password'] = user.password_hash
     user_data['total_points'] = user.total_points
 
+    # might wanna change these returns to not include 'user'
     return jsonify({ 'user': user_data})
+
+# for if we want a delete profile section on profile page
+@app.route('/user/<user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+
+    if not user:
+        return jsonify({'message': ' no user found'})
+    
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify ({'message': 'user deleted'})
