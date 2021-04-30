@@ -2,3 +2,4 @@ sqlalchemy<1.4
 flask
 Flask-SQLAlchemy
 Flask-Migrate
+PyJWT==v1.7.1
