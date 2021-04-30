@@ -1,5 +1,7 @@
 import React from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import './Login.css'
 // import RegisterPage from './../pages/RegisterPage'
 
 const Login = () => {
@@ -7,6 +9,8 @@ const Login = () => {
 
     // set states for form inputs
 
+    // state for error
+    // const [formError, setFormError] = setError("")
     // upon form submission, need to try to log in, then route to user dashboard page
     const loginFormSubmitted = () => {
         alert('login form submitted')
@@ -18,10 +22,14 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={loginFormSubmitted}> 
-                <label>Username</label>
-                <input placeholder="please enter your username"/>
-                <label>Password</label>
-                <input placeholder="please enter your password" />
+                <div class="input-group">
+                    <label>Username</label>
+                    <input placeholder="please enter your username"/>
+                </div>  
+                <div class="input-group">
+                    <label>Password</label>
+                    <input placeholder="please enter your password"/>
+                </div> 
                 <input type="submit" value="Log in"/>
             </form>
             <button onClick={() => history.push('/registerpage')}>Register Now</button>
