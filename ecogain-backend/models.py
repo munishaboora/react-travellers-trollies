@@ -1,8 +1,9 @@
 from app import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 
-class User(db.Model, UserMixin):
+from werkzeug.security import generate_password_hash, check_password_hash
+#from flask_login import UserMixin
+
+class User(db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
@@ -10,7 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String)
     password_hash = db.Column(db.String(128))
     total_points = db.Column(db.Integer)
-
+'''
     def __repr__(self):
        return '<User {}>'.format(self.username) 
 
@@ -23,7 +24,7 @@ class User(db.Model, UserMixin):
     @login.user_loader
     def load_user(id):
         return User.query.get(int(id))
-
+'''
 class Activity(db.Model):
     __tablename__ = 'Activity'
     id = db.Column(db.Integer, primary_key = True)
