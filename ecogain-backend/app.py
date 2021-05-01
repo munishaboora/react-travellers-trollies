@@ -4,10 +4,12 @@ from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt 
 import datetime
+from flask_cors import CORS
 
 
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./data/ecogain.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    # Disables modification notifications
 app.config['SECRET_KEY'] = 'string'
@@ -24,7 +26,7 @@ def hello_world():
 @app.route('/user', methods=['POST'])
 def create_user():
     data = request.get_json()
-    hash_password = generate_password_hash(data['password'], method='sha256')
+    hash_password = generate_password_hash(data['passwordOne'], method='sha256')
         # verification
     new_user = User(name = data['name'], username = data['username'], email = data['email'], password_hash = hash_password, total_points = 0 )
     db.session.add(new_user)
