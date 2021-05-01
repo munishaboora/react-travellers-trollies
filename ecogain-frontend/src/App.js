@@ -8,6 +8,7 @@ import LeaderBoardPage from './pages/LeaderBoardPage';
 
 function App() {
   return (
+    
     <div className="App">
       <Switch> 
         <Route exact path="/" component={LoginPage} exact />
